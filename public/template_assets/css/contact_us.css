@@ -1,0 +1,83 @@
+:root{
+    --main-color:#28b661;
+    --secondary-color:#f3f5f0;
+}
+
+
+
+
+.form_container{
+padding:20px;
+border:1px solid grey;
+border-radius:10px;
+width:60%;
+line-height: 1.8;
+text-align: left;
+margin: auto;
+
+}
+
+.contact_container{
+    margin-top:40px;
+    background-color: #ffffff;
+
+}
+
+form .input_container{
+display: flex;
+justify-content: space-between;
+width:100%;
+
+}
+
+
+label{
+display: block;
+}
+.full_width
+{
+padding:.5rem 0;
+width:100%;
+border-radius:2px;
+border: none;
+margin-top: 10px;  
+background-color: #f8f8f8;
+
+}
+.form_btn{
+padding:.5rem 0;
+border: none;
+background-color:var(--main-color);
+color:white;
+width:150px;
+border-radius: 3px;
+}
+.full_width:hover ,.btn:hover{
+outline:2px solid var(--main_color);
+}
+.email_number a{
+text-decoration: none;
+
+
+font-weight: bold;
+}
+.navbar{
+    background-color: var(--secondary-color);
+}
+.nav-link {
+    color: black !important;
+}
+.colored,.nav_icons{
+    color:#28b661 !important;
+    font-weight: bold;
+}
+.services_container{
+padding:50px 0 50px 0 ;
+}
+.section_heading{
+    text-align: center;
+    
+}
+.section_header{
+    padding: 96px 0 30px 0;
+}

@@ -1,0 +1,15 @@
+@font-face {
+    font-family:"BravaSlab-Bold";
+    src: url( ../fonts/BravaSlab-Bold.ttf);
+}
+@font-face {
+    font-family:"BravaSlab-Regular";
+    src: url(../fonts/BravaSlab-Regular.ttf);
+}
+@font-face {
+    font-family:"BravaSlab-Regular";
+    src: url(../fonts/BravaSlab-Light.ttf);
+}
+body{
+    font-family: "BravaSlab-Regular";
+}

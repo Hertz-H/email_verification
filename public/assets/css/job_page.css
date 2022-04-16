@@ -1,0 +1,185 @@
+@font-face {
+    font-family:"BravaSlab-Bold";
+    src: url( ../fonts/BravaSlab-Bold.ttf);
+}
+@font-face {
+    font-family:"BravaSlab-Regular";
+    src: url(../fonts/BravaSlab-Regular.ttf);
+}
+@font-face {
+    font-family:"BravaSlab-Regular";
+    src: url(../fonts/BravaSlab-Light.ttf);
+}
+
+    body{
+        padding:0;
+        margin:0;
+        box-sizing: border-box;
+      
+         font-family:"BravaSlab-Regular";
+
+    }
+    *{
+        padding:0;
+        margin:0;
+        box-sizing: border-box;
+    }
+    .row_css{
+       
+        display: grid;
+        grid-template-columns: repeat(auto-fit,202px);
+       
+        justify-content: center;
+        gap: 15px;
+  
+     
+    }
+    
+    .card{
+      
+        border:1px grey solid;
+        padding:10px 10px 25px 10px;
+        border: 1.3px #bfc2c969  solid !important;
+        border-radius: 3px;
+        
+    }
+    .card__header{
+        display:flex;
+        width:100%;
+        justify-content: space-between;
+    }
+    .card__icon{
+        color:#96999fb3;
+        height:33px;
+        width:33px;
+        border: 1.3px #bfc2c969  solid;
+        text-align: center;
+        font-size: .8rem;
+        line-height: 33px;
+        border-radius: 50%;
+    }
+    .card__job_time{
+        padding: 5px 8px;
+        background-color: #e7f7ee;
+        font-size: .8rem;
+        color:#28b661;
+        align-self: flex-start;
+        border-radius: 3px;
+    }
+.card__content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top:10px;
+    gap:10px;
+    text-align:center;
+   line-height: 1.5;
+    
+}
+  .card__img{
+    
+      width: 70px;
+      height:70px;
+    
+  }
+  .card__img img{
+      width: 100%;
+
+  }
+  .card__title_first{
+    font-weight:600;
+    font-size: .9rem;
+  }
+  .card__title_second{
+    color:#8b8888;
+    font-size:.9rem
+
+  }
+  
+  .card__title_second i{
+    font-size: .8rem;
+    color:rgb(153, 150, 150);
+    margin-right:5px;
+  }
+  
+  .card__skills span{
+    display: inline-block;
+    padding:3px 6px;
+    background-color:#f1f3f5;
+    color: #103d59;
+    border-radius: 3px;
+    font-size:.7rem;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 7px;
+  }
+  .card__skills .page_btn{
+    background-color: #28b661;
+    color:white;
+    
+  }
+  .card__job_time--warning{
+      color:#ff9b20;
+      background-color:#fff8ec;
+  } 
+  .card__job_time--pink{
+      color:#ea2b33;
+      background-color:#ffeced;
+  } 
+  .card__job_time--purple{
+      color:#7460ee;;
+      background-color:#eeebff;
+  } 
+.filer_section{
+    width:300px;
+}
+.fliter_heading{
+    color:black;
+    font-weight:bold;
+}
+ .job_section{
+     padding:50px 0 ;
+ } 
+ .form-control:focus, .form-select:focus{
+    border-color: #28b661 ;
+    box-shadow: 0 0 0 0.25rem rgb(76 175 80 / 27%) ;
+     
+    }
+
+    @media (max-width:768px){
+        .row_css{
+        grid-template-columns: repeat(auto-fit,250px);
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+    .filer_section{
+        width:95%;
+        margin:auto;
+    }
+}
+  
+
+  
+    .navbar{
+    background-color: var(--secondary-color);
+}
+.nav-link {
+    color: black !important;
+}
+.colored,.nav_icons{
+    color:#28b661 !important;
+    font-weight: bold;
+}
+.services_container{
+padding:50px 0 50px 0 ;
+}
+.section_heading{
+    text-align: center;
+    
+}
+.section_header{
+    padding: 96px 0 30px 0;
+}
+
+

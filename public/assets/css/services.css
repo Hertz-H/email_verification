@@ -1,0 +1,78 @@
+
+body{
+    font-family: 'Work Sans', sans-serif !important;
+}
+
+a{
+    text-decoration: none;
+}
+
+.serv_card_con{
+display: grid;
+grid-template-columns: repeat(auto-fit,300px);
+gap:30px;
+justify-content: center;
+width:50%;
+margin: auto;
+}
+.serv{
+    display: flex;
+    gap:15px;
+    padding:5px;
+}
+.serv span{
+    font-size: 1.3rem;
+    
+}
+.serv .icon_cont {
+width:100px; 
+height:80px; 
+line-height: 80px;
+text-align: center;
+align-self: flex-start;
+font-size: 1.5rem;
+border-radius: 3px;
+}
+.orng{
+    color:#ff9b20;
+    background-color:#fff8ec;
+}
+.grn{
+    background-color: #e7f7ee;
+    color:#28b661;
+}
+.dark_orng {
+    background-color: #FEE7DD;
+    color: #FA5F1C;
+
+}
+.serv p{
+    font-size: .9rem;
+    color:#696969;
+}
+
+.navbar{
+    background-color: var(--secondary-color);
+}
+.nav-link {
+    color: black !important;
+}
+.colored,.nav_icons{
+    color:#28b661 !important;
+    font-weight: bold;
+}
+.services_container{
+padding:50px 0 50px 0 ;
+}
+.section_heading{
+    text-align: center;
+    
+}
+.section_header{
+    padding: 96px 0 30px 0;
+}
+/* ######################## Start long_card#########################  */
+
+
+
+/* ########################End long_card#########################  */

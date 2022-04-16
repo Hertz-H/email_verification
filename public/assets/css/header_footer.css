@@ -1,0 +1,127 @@
+@font-face {
+    font-family:"BravaSlab-Bold";
+    src: url( ../fonts/BravaSlab-Bold.ttf);
+}
+@font-face {
+    font-family:"BravaSlab-Regular";
+    src: url(../fonts/BravaSlab-Regular.ttf);
+}
+@font-face {
+    font-family:"BravaSlab-Regular";
+    src: url(../fonts/BravaSlab-Light.ttf);
+}
+:root{
+    --main-color:#28b661;
+    --secondary-color:#f3f5f0;
+}
+body{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+    font-family: "BravaSlab-Regular";
+
+}
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none !important;
+}
+.navbar{
+    transition:.5s;
+}
+.navbar-nav{
+    margin-left: auto;
+    
+    font-weight:600;
+}
+
+
+.navbar-brand{
+    display: inline-block;
+    padding:5px 8px;
+    background-color:#28b661 ;
+    font-weight: bold;
+  
+}
+
+footer{
+    background-color: #f3f5f0;
+    padding:15px 0;
+}
+
+.footer_container{
+    padding:10px 0;
+    display: flex;
+    flex-direction: column-reverse;
+    gap:20px;
+    justify-content: center;
+    /* font-weight: bold; */
+    align-items: center;
+    color:grey;
+   
+}
+.social_links{
+    display: flex;
+    color: #28b661;
+
+
+}
+.social_links a{
+    transition: .5s;
+    
+}
+.social_links a:hover{
+    transform: scale(1.3);
+  
+}
+
+.social_links a+a{
+    margin-left: 10px;
+}
+
+.section_header{
+    padding:30px 0;
+    /* background-color: #e7f7ee; */
+     background-color: var(--secondary-color);
+
+}
+.heading{
+    text-align:center;
+}
+
+.breadcrumb_container{
+    display: flex;
+       justify-content: center;
+}
+.breadcrumb-item a{
+    color:#696969;
+text-decoration: none;
+}
+.breadcrumb-item:before{
+    color:var(--main-color)!important;
+}
+ @media(max-width:992px){
+    .navbar{
+        background-color: var(--secondary-color) !important;
+    }
+    .nav-link{
+        color: black !important;
+    }
+}
+
+.colored,.nav_icons{
+    color:#28b661 !important;
+    font-weight: bold;
+}
+.nav-link:hover{
+    color:var(--main-color) !important;
+}
+.colored{
+    color:white!important;
+}
+.nav_icons:hover{
+color:black !important;
+}

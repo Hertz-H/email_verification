@@ -1,0 +1,144 @@
+@font-face {
+    font-family: 'Brava Slab';
+    src: url('BravaSlab-SemiBold.eot');
+    src: local('Brava Slab SemiBold'), local('BravaSlab-SemiBold'),
+        url('BravaSlab-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('BravaSlab-SemiBold.woff2') format('woff2'),
+        url('BravaSlab-SemiBold.woff') format('woff'),
+        url('BravaSlab-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Brava Slab';
+    src: url('BravaSlab-ExtraBoldItalic.eot');
+    src: local('Brava Slab ExtraBold Italic'), local('BravaSlab-ExtraBoldItalic'),
+        url('BravaSlab-ExtraBoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('BravaSlab-ExtraBoldItalic.woff2') format('woff2'),
+        url('BravaSlab-ExtraBoldItalic.woff') format('woff'),
+        url('BravaSlab-ExtraBoldItalic.ttf') format('truetype');
+    font-weight: 800;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Brava Slab';
+    src: url('BravaSlab-SemiBoldItalic.eot');
+    src: local('Brava Slab SemiBold Italic'), local('BravaSlab-SemiBoldItalic'),
+        url('BravaSlab-SemiBoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('BravaSlab-SemiBoldItalic.woff2') format('woff2'),
+        url('BravaSlab-SemiBoldItalic.woff') format('woff'),
+        url('BravaSlab-SemiBoldItalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Brava Slab';
+    src: url('BravaSlab-BoldItalic.eot');
+    src: local('Brava Slab Bold Italic'), local('BravaSlab-BoldItalic'),
+        url('BravaSlab-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('BravaSlab-BoldItalic.woff2') format('woff2'),
+        url('BravaSlab-BoldItalic.woff') format('woff'),
+        url('BravaSlab-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Brava Slab';
+    src: url('BravaSlab-ExtraBold.eot');
+    src: local('Brava Slab ExtraBold'), local('BravaSlab-ExtraBold'),
+        url('BravaSlab-ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('BravaSlab-ExtraBold.woff2') format('woff2'),
+        url('BravaSlab-ExtraBold.woff') format('woff'),
+        url('BravaSlab-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Brava Slab';
+    src: url('BravaSlab-Regular.eot');
+    src: local('Brava Slab Regular'), local('BravaSlab-Regular'),
+        url('BravaSlab-Regular.eot?#iefix') format('embedded-opentype'),
+        url('BravaSlab-Regular.woff2') format('woff2'),
+        url('BravaSlab-Regular.woff') format('woff'),
+        url('BravaSlab-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Brava Slab';
+    src: url('BravaSlab-ExtraLightItalic.eot');
+    src: local('Brava Slab ExtraLight Italic'), local('BravaSlab-ExtraLightItalic'),
+        url('BravaSlab-ExtraLightItalic.eot?#iefix') format('embedded-opentype'),
+        url('BravaSlab-ExtraLightItalic.woff2') format('woff2'),
+        url('BravaSlab-ExtraLightItalic.woff') format('woff'),
+        url('BravaSlab-ExtraLightItalic.ttf') format('truetype');
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Brava Slab';
+    src: url('BravaSlab-Bold.eot');
+    src: local('Brava Slab Bold'), local('BravaSlab-Bold'),
+        url('BravaSlab-Bold.eot?#iefix') format('embedded-opentype'),
+        url('BravaSlab-Bold.woff2') format('woff2'),
+        url('BravaSlab-Bold.woff') format('woff'),
+        url('BravaSlab-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Brava Slab';
+    src: url('BravaSlab-Light.eot');
+    src: local('Brava Slab Light'), local('BravaSlab-Light'),
+        url('BravaSlab-Light.eot?#iefix') format('embedded-opentype'),
+        url('BravaSlab-Light.woff2') format('woff2'),
+        url('BravaSlab-Light.woff') format('woff'),
+        url('BravaSlab-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Brava Slab';
+    src: url('BravaSlab-RegularItalic.eot');
+    src: local('Brava Slab Regular Italic'), local('BravaSlab-RegularItalic'),
+        url('BravaSlab-RegularItalic.eot?#iefix') format('embedded-opentype'),
+        url('BravaSlab-RegularItalic.woff2') format('woff2'),
+        url('BravaSlab-RegularItalic.woff') format('woff'),
+        url('BravaSlab-RegularItalic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Brava Slab';
+    src: url('BravaSlab-LightItalic.eot');
+    src: local('Brava Slab Light Italic'), local('BravaSlab-LightItalic'),
+        url('BravaSlab-LightItalic.eot?#iefix') format('embedded-opentype'),
+        url('BravaSlab-LightItalic.woff2') format('woff2'),
+        url('BravaSlab-LightItalic.woff') format('woff'),
+        url('BravaSlab-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Brava Slab';
+    src: url('BravaSlab-ExtraLight.eot');
+    src: local('Brava Slab ExtraLight'), local('BravaSlab-ExtraLight'),
+        url('BravaSlab-ExtraLight.eot?#iefix') format('embedded-opentype'),
+        url('BravaSlab-ExtraLight.woff2') format('woff2'),
+        url('BravaSlab-ExtraLight.woff') format('woff'),
+        url('BravaSlab-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
