@@ -83,9 +83,9 @@ height:150px;
      background-color:#e7f7ee;
  }
  .card--long{
-     padding: 20px 0;
-     
+     padding: 10px 0;
      background-color: white;
+     align-items: center;
      /* background-color: violet; */
 
 
@@ -319,9 +319,9 @@ margin-bottom: 7px;
   background-color:#eeebff;
 } 
 
-    header{
+    /* header{
         height: 0;
-    }
+    } */
     .carousel-item{
         width:100%;
         height: 100%;
@@ -368,11 +368,12 @@ margin-bottom: 7px;
       color:#28b661;
   }
   .nav-link{
-    color:white !important;
+    color:#36574a !important;
 }
 
 .nav-item_scrl_col{
-    color:black !important;
+    /* color:black */
+    color:#36574a !important;
 }
 .colored,.nav_icons{
     color:#28b661 !important;
@@ -382,7 +383,7 @@ margin-bottom: 7px;
     width: 500px;;
     margin:auto;
     text-align: center;
-    padding: 30px 0;
+    padding: 40px 0;
 }
 .jobs_section {
     padding: 40px 0;
@@ -432,9 +433,9 @@ form{
 .heading_cont{
     text-align: center;
 }
-.card--long{
+/* .card--long{
     margin-top:20px;
-}
+} */
 .lower_adv_cont div img{
     width:100%;
     height: 100%;
@@ -466,7 +467,8 @@ form{
 }
 .company_container{
  margin:auto;
-    width:80%; 
+ margin-top:20px;
+ width:80%; 
 }
 .change_language{
     cursor: pointer;
@@ -483,4 +485,11 @@ form{
 
    
 }
+
+}
+@media(max-width:992px){
+    .intro{
+        flex-direction: column-reverse;
+        gap:30px;
+    }
 }

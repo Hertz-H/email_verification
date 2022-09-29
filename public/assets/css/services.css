@@ -1,12 +1,7 @@
 
-body{
-    font-family: 'Work Sans', sans-serif !important;
-}
-
 a{
     text-decoration: none;
 }
-
 .serv_card_con{
 display: grid;
 grid-template-columns: repeat(auto-fit,300px);

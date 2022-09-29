@@ -1,3 +1,4 @@
+
 @font-face {
     font-family:"BravaSlab-Bold";
     src: url( ../fonts/BravaSlab-Bold.ttf);
@@ -32,12 +33,19 @@ a{
 .navbar{
     transition:.5s;
 }
+.navbar a{
+    cursor:pointer;
+}
 .navbar-nav{
     margin-left: auto;
     
     font-weight:600;
 }
-
+header{
+    height:100px;
+    background-color: var(--secondary-color);
+   
+}
 
 .navbar-brand{
     display: inline-block;
@@ -46,22 +54,32 @@ a{
     font-weight: bold;
   
 }
-
+.Companies_container,.services_container{
+    min-height: 300px;
+}
 footer{
     background-color: #f3f5f0;
-    padding:15px 0;
+    /* margin-top: 20px; */
+    padding:5px 0;
+    /* position: relative; */
 }
 
 .footer_container{
+    
     padding:10px 0;
     display: flex;
     flex-direction: column-reverse;
-    gap:20px;
+    gap:2px;
     justify-content: center;
     /* font-weight: bold; */
     align-items: center;
     color:grey;
    
+}
+.copyright{
+    font-size: 14px;
+    color:#36574a;
+    font-weight: bolder;
 }
 .social_links{
     display: flex;
@@ -108,7 +126,7 @@ text-decoration: none;
         background-color: var(--secondary-color) !important;
     }
     .nav-link{
-        color: black !important;
+        color: #36574a !important;
     }
 }
 
@@ -124,4 +142,14 @@ text-decoration: none;
 }
 .nav_icons:hover{
 color:black !important;
+}
+.section_header{
+padding-top:50px !important;
+padding-bottom:50px !important;
+}
+.btn-check:focus+.btn, .btn:focus {
+    /* outline: 0; */
+     /* box-shadow: 0 0 0 0.25rem rgba(13, 253, 169, 0.25)!important;  */
+     box-shadow: none !important; 
+
 }

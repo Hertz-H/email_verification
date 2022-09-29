@@ -20,8 +20,8 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->string('description');
-            $table->foreignId('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('profile_id');
+            $table->foreign('profile_id')->references('id')->on('profiles')->onDelete('cascade');
             $table->boolean('is_active')->default(0);
             $table->timestamps();
         });

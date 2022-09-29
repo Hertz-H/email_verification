@@ -18,7 +18,7 @@ class WelcomeEmail extends Mailable
      */
     public function __construct($email_data)
     {
-        $this->data=$email_data;
+        $this->data = $email_data;
     }
 
     /**
@@ -29,7 +29,8 @@ class WelcomeEmail extends Mailable
     public function build()
     {
         return $this->view('emails.welcome')
-        ->subject("تسجيل عضوية جديدة")
-        ->withSwiftMessage();
+            ->subject("تسجيل عضوية جديدة");
+        // ->withSwiftMessage();
+        // return $this->view('mail.email_verify')->subject('CAC');
     }
 }

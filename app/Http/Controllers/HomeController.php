@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Job;
 use App\Models\Company;
-use App\Models\Ad;
+use App\Models\Category;
+use App\Models\Add;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -32,23 +35,23 @@ class HomeController extends Controller
 
 
 
-/**----------------------
- *  load updatePassword page
- *------------------------**/
+    /**----------------------
+     *  load updatePassword page
+     *------------------------**/
     public function changePassword()
     {
-       return view('auth.change_password');
+        return view('auth.change_password');
     }
 
 
 
 
 
-/**----------------------
- *    updatePassword
- *------------------------**/
+    /**----------------------
+     *    updatePassword
+     *------------------------**/
     public function updatePassword(Request $request)
-{
+    {
         # Validation
         $request->validate([
             'old_password' => 'required',
@@ -57,7 +60,7 @@ class HomeController extends Controller
 
 
         #Match The Old Password
-        if(!Hash::check($request->old_password, auth()->user()->password)){
+        if (!Hash::check($request->old_password, auth()->user()->password)) {
             return back()->with("error", "Old Password Doesn't match!");
         }
 
@@ -71,9 +74,9 @@ class HomeController extends Controller
     }
 
 
-/**----------------------
- *    load the rest password
- *------------------------**/
+    /**----------------------
+     *    load the rest password
+     *------------------------**/
     public function index()
     {
         return view('home');
@@ -82,26 +85,31 @@ class HomeController extends Controller
     /**----------------------
      *    load the home front 
      *------------------------**/
-    public function load(){
-        $job=Job::select('jobs.*','companies.name','companies.logo','companies.location','companies.is_active')
-        ->join('companies','jobs.company_id','=','companies.id')
-        ->where('companies.is_active','1')
-        ->where('jobs.is_active','1')
-        ->get();
-        $company = Company::All()->where('is_active','1');
-        $ad=Ad::all()->where('is_active','1')->take(2);
+    public function load()
+    {
+        // $job=Job::select('jobs.*','companies.name','companies.logo','companies.location','companies.is_active')
+        // ->join('companies','jobs.company_id','=','companies.id')
+        // ->where('companies.is_active','1')
+        // ->where('jobs.is_active','1')
+        // ->get();
+        $job = Job::with('company', 'company.location')->where('end_date', '>=', \Carbon\Carbon::now())->where('is_active', '1')->whereRelation('company', 'is_active', '=', '1')->orderBy('created_at', 'desc')->take(8)->get();
+        $company = Company::with('location')->where('is_active', '1')->take(6)->get();
+        $categories = Category::where('is_active', '1')->get();
+        // $ad = Add::where('start_date', '<=', \Carbon\Carbon::now())->where('end_date', '>=', \Carbon\Carbon::now())->where('is_active', '1')->orderBy('created_at', 'desc')->take(2)->get();
+        $now = substr(Carbon::now()->format('Y-m-d'), 0, 10);
+        // dd($now);
+        $ad = Add::where('end_date', '>=', $now)->where('is_active', '1')->orderBy('created_at', 'desc')->take(2)->get();
+        // $ad = Add::where('is_active', '1')->orderBy('created_at', 'desc')->take(2)->get();
 
-        $data=[
-           'job'=> $job,
-           'company'=> $company,
-           'ad'=> $ad
+
+        $data = [
+            'job' => $job,
+            'company' => $company,
+            'ad' => $ad,
+            'category' => $categories
 
         ];
-        return view('index')->with('data',$data);
+        return view('index')->with('data', $data);
+        // return response($ad);
     }
-
-
-
-
-    
 }

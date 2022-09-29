@@ -11,9 +11,12 @@ class Company extends Model
     // protected $guarded = [];
 
 
-
-    public function jobs(){
-        return $this->hasMany(Job::class,'company_id');
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
     }
-
+    public function jobs()
+    {
+        return $this->hasMany(Job::class, 'company_id');
+    }
 }
