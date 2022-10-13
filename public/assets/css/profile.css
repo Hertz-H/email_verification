@@ -36,7 +36,7 @@ a{
     font-size: .9rem;
     box-shadow: 0 8px 16px rgba(0, 0, 0, .15) ;
     border-bottom-left-radius:10px ;
-    max-height:85vh;
+    max-height:87vh;
     padding-top:60px;
 
 }
@@ -46,8 +46,9 @@ a{
     padding: 20px 0;
 }
 .form-container h3{
-    margin-bottom: 40px;
+    /* margin-bottom: 40px; */
     color:grey;
+    font-size:27!important;
 }
 
 .save{
@@ -138,7 +139,7 @@ a{
     padding:4px 14px;
     border-radius: 3px;
     color:white !important;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
 }
 .form_view{
     display: none;
@@ -204,6 +205,13 @@ color:var(--main-color);
 .exper_title{
     width:40px;
 }
+.exper_info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}
+
 .percentag{
     background-color: var(--main-color);
     height: 100%;
@@ -255,4 +263,13 @@ caption{
         display: none;
     }
    
+    }
+  
+    @media print {
+
+        /* visible when printed */
+        header {
+            display: none;
+        }
+
     }

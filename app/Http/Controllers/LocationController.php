@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\LocationRequest;
+use App\Http\Controllers\Enum\FeedbackMessage;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Location;
 
@@ -15,27 +17,16 @@ class LocationController extends Controller
         return view('dashboard.add_location');
     }
 
-    public function add(Request $request)
+    public function add(LocationRequest $request)
     {
-
-        Validator::validate($request->all(), [
-            'name' => ['required', 'min:3', 'max:50'],
-        ], [
-            'name.required' => 'name is required',
-            'name.min' => 'name must be at least 3 letters',
-            'name.max' => 'name must be at most 50 letters',
-
-        ]);
+        $request->validated();
         $location = new Location();
         $location->name = $request->name;
 
         if ($location->save()) {
-            // return response($location);
-            return redirect('list_locations')->with(['success' => 'created successfully']);
-        } else {
-            // return response($location);
-            return redirect('list_locations')->with(['error' => 'creation failed']);
+            to_route('location.index')->with(['success' => FeedbackMessage::ADD_SUCCESS]);
         }
+        return to_route('location.index')->with(['error' => FeedbackMessage::ADD_FAILED]);
     }
 
 
@@ -45,37 +36,29 @@ class LocationController extends Controller
         return view('dashboard.update_location')->with("data", $data);
     }
 
-    public function update(Request $request)
+    public function update(LocationRequest $request)
     {
+        $request->validated();
+        $location =  Location::find($request->id);
+        $location->name = $request->name;
 
-        Location::where('id',  $request->id)
-            ->update(
-                [
-                    'name' => $request->name,
-
-                ]
-            );
-
-
-        return redirect('list_locations');
+        if ($location->save()) {
+            to_route('location.index')->with(['success' => FeedbackMessage::UPDATE_SUCCESS]);
+        }
+        return to_route('location.index')->with(['error' => FeedbackMessage::UPDATE_FAILED]);
     }
 
 
     public function activate(Request $request)
     {
 
-        $active = 1;
-        if ($request->active == 1) {
-            $active = 0;
-        }
+        $location = Location::find($request->id);
+        $location->is_active = $request->active == 1 ? 0 : 1;
+        if ($location->save()) {
 
-        Location::where('id',  $request->id)
-            ->update(
-                [
-                    'is_active' => $active,
-                ]
-            );
-        return redirect('list_locations');
+            to_route('location.index')->with(['success' => FeedbackMessage::UPDATE_SUCCESS]);
+        }
+        return to_route('location.index')->with(['error' => FeedbackMessage::UPDATE_FAILED]);
     }
 
 

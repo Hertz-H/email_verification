@@ -452,3 +452,36 @@ color:white;
 .related_j_heading{
 padding-bottom: 20px;
 }
+@media print {
+
+    /* visible when printed */
+    header {
+        display: none;
+    }
+
+    .section_header {
+        display: none;
+    }
+
+    footer {
+        display: none;
+    }
+
+    .related_jobs {
+        display: none;
+    }
+
+    .job_info_container {
+        display: flex;
+
+    }
+
+    .container {
+        /* margin: 0; */
+        width: 100%;
+    }
+
+    .job_endin_cont {
+        width: 100% !important;
+    }
+}

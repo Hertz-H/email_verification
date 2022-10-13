@@ -1,14 +1,5 @@
 @extends('layout.user_master')
-<style>
-    @media print {
 
-        /* visible when printed */
-        header {
-            display: none;
-        }
-
-    }
-</style>
 @section('content')
     <div class="form-container  ">
         <div class="personal_info ">

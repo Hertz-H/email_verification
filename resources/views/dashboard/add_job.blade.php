@@ -7,7 +7,7 @@
             @csrf
             <div class="col-md-5">
                 <label for="Title" class="form-label">Title</label>
-                <input type="text" class="form-control" id="Title"name="title" required>
+                <input type="text" class="form-control" id="Title"name="title">
                 @error('title')
                     <span style="color:red;font-size:12px"> {{ $message }} </span>
                 @enderror
@@ -44,25 +44,7 @@
                 </select>
 
             </div>
-            {{-- <div class="col-md-6">
-                      <label for="Company" class="form-label">Company</label>
-                      <input type="text" class="form-control" id="location" name="location" required>
-                      @error('location')
-                      <span style="color:red;font-size:12px"> {{ $message }} </span> 
-                    
-                     @enderror
-                    </div> --}}
 
-
-
-
-            {{-- <div class="col-md-6">
-                      <label for="Company" class="form-label">location</label>
-                      <select name="company" id="">
-                        <option value=""></option>
-                      </select>
-
-                    </div> --}}
             <div class="col-4">
                 <label for="inputFrom" class="form-label">From </label>
                 <input type="date" class="form-control" id="inputFrom" placeholder="" name="from"required>

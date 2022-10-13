@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Job;
 use App\Models\Company;
+
 use App\Models\Category;
 use App\Models\Add;
 use Carbon\Carbon;
@@ -92,11 +93,11 @@ class HomeController extends Controller
         // ->where('companies.is_active','1')
         // ->where('jobs.is_active','1')
         // ->get();
-        $job = Job::with('company', 'company.location')->where('end_date', '>=', \Carbon\Carbon::now())->where('is_active', '1')->whereRelation('company', 'is_active', '=', '1')->orderBy('created_at', 'desc')->take(8)->get();
+        $now = substr(Carbon::now()->format('Y-m-d'), 0, 10);
+        $job = Job::with('company', 'company.location')->where('end_date', '>=', $now)->where('is_active', '1')->whereRelation('company', 'is_active', '=', '1')->orderBy('created_at', 'desc')->take(8)->get();
         $company = Company::with('location')->where('is_active', '1')->take(6)->get();
         $categories = Category::where('is_active', '1')->get();
         // $ad = Add::where('start_date', '<=', \Carbon\Carbon::now())->where('end_date', '>=', \Carbon\Carbon::now())->where('is_active', '1')->orderBy('created_at', 'desc')->take(2)->get();
-        $now = substr(Carbon::now()->format('Y-m-d'), 0, 10);
         // dd($now);
         $ad = Add::where('end_date', '>=', $now)->where('is_active', '1')->orderBy('created_at', 'desc')->take(2)->get();
         // $ad = Add::where('is_active', '1')->orderBy('created_at', 'desc')->take(2)->get();

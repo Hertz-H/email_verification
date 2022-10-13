@@ -80,10 +80,10 @@ Route::group(['middleware' => 'auth'], function () {
     /**----------------------
      *    Service Routes
      *------------------------**/
-    Route::get('/list_services', [ServiceController::class, "list"]);
+    Route::get('/list_services', [ServiceController::class, "list"])->name('service.index');
     Route::get('/add_service', [ServiceController::class, "loadAdd"]);
     Route::get('/update_service/{id}', [ServiceController::class, "updatePage"]);
-    Route::post('/update_service', [ServiceController::class, "update"])->name('save_update');
+    Route::put('/update_service/{id}', [ServiceController::class, "update"])->name('save_update');
     Route::get('/activate_service/{id}/{active}', [ServiceController::class, "activate"]);
     Route::post('/add_service', [ServiceController::class, "add"])->name('save_service');
 
@@ -92,20 +92,20 @@ Route::group(['middleware' => 'auth'], function () {
     /**----------------------
      *    Category Routes
      *------------------------**/
-    Route::get('/list_categories', [CategoryController::class, "list"]);
+    Route::get('/list_categories', [CategoryController::class, "list"])->name('category.index');
     Route::get('/add_category', [CategoryController::class, "loadAdd"]);
     Route::get('/update_category/{id}', [CategoryController::class, "updatePage"]);
-    Route::post('/update_category', [CategoryController::class, "update"])->name('edit_category');
+    Route::put('/update_category{id}', [CategoryController::class, "update"])->name('edit_category');
     Route::get('/activate_category/{id}/{active}', [CategoryController::class, "activate"]);
     Route::post('/add_category', [CategoryController::class, "add"])->name('save_category');
 
     /**----------------------
      *    location Routes
      *------------------------**/
-    Route::get('/list_locations', [LocationController::class, "list"]);
+    Route::get('/list_locations', [LocationController::class, "list"])->name('location.index');
     Route::get('/add_location', [LocationController::class, "loadAdd"]);
     Route::get('/update_location/{id}', [LocationController::class, "updatePage"]);
-    Route::post('/update_location', [LocationController::class, "update"])->name('edit_location');
+    Route::put('/update_location/{id}', [LocationController::class, "update"])->name('edit_location');
     Route::get('/activate_location/{id}/{active}', [LocationController::class, "activate"]);
     Route::post('/add_location', [LocationController::class, "add"])->name('save_location');
     /**----------------------
@@ -114,7 +114,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/add_ad', [AddController::class, "add"])->name('save_ad');
     Route::get('/add_ad', [AddController::class, "loadAdd"]);
-    Route::get('/list_ads', [AddController::class, "list"]);
+    Route::get('/list_ads', [AddController::class, "list"])->name('ad.index');
     Route::get('/update_ad/{id}', [AddController::class, "updatePage"]);
     Route::post('/update_ad', [AddController::class, "update"])->name('updateAd');
     Route::get('/activate_ad/{id}/{active}', [AddController::class, "activate"]);
@@ -126,12 +126,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/add_company', [ServiceController::class, "add"])->name('save_company');
     Route::get('/add_company', [CompanyController::class, "loadAdd"]);
     Route::post('/add_company', [CompanyController::class, "add"])->name('save_company');
-    Route::get('/list_companies', [CompanyController::class, "list"]);
+    Route::get('/list_companies', [CompanyController::class, "list"])->name('company.index');
     Route::get('/datatabl/list', [CompanyController::class, "listDAtaTable"])->name("datatable.list");
     Route::get('/datatable', [CompanyController::class, "index"]);
 
     Route::get('/update_company/{id}', [CompanyController::class, "updatePage"]);
-    Route::post('/update_company', [CompanyController::class, "update"])->name('updateCompany');
+    Route::put('/update_company/{id}', [CompanyController::class, "update"])->name('updateCompany');
     Route::get('/activate_company/{id}/{active}', [CompanyController::class, "activate"]);
 
     /**----------------------
@@ -141,7 +141,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/add_job', [JobPagController::class, "add"])->name('save_job');
     Route::get('/list_jobs', [JobPagController::class, "list"])->name('list_jobs');
     Route::get('/update_job/{id}', [JobPagController::class, "updatePage"]);
-    Route::post('/update_job', [JobPagController::class, "update"])->name('updatejob');
+    Route::put('/update_job/{id}', [JobPagController::class, "update"])->name('updatejob');
     Route::get('/activate_job/{id}/{active}', [JobPagController::class, "activate"]);
   });
 

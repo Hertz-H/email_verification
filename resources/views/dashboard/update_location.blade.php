@@ -3,8 +3,9 @@
 @section('content')
     <div class="form-container  ">
         <h3> update location</h3>
-        <form class="row g-3 " action="{{ route('edit_location') }}" method="post" enctype="multipart/form-data">
+        <form class="row g-3 " action="{{ route('edit_location', $data['id']) }}" method='POST' enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="col-md-6">
                 <label for="Title" class="form-label">Name</label>
                 <input type="text" class="form-control" id="Title"name="name" required value="{{ $data['name'] }}">
@@ -16,15 +17,9 @@
                 <span style="color:red;font-size:12px"> {{ $message }} </span>
             @enderror
             <div class="col-12">
-                {{-- <label for="description" class="form-label">Description</label>
-                      <textarea class="form-control" id="description" rows="3"name="description" required value="{{old('description')}}">
-                        {{$data['description']}}
-                    </textarea> --}}
+
             </div>
-            {{-- @error('description')
-                    <span style="color:red;font-size:12px"> {{ $message }} </span> 
-                  
-                   @enderror --}}
+
 
             <div class="col-2">
                 <button type="submit" class="btn save">Save</button>

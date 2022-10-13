@@ -3,8 +3,11 @@
 @section('content')
     <div class="form-container  ">
         <h3> update job</h3>
-        <form class="row g-3 " action="{{ route('updatejob') }}" method="post" enctype="multipart/form-data">
-            @csrf <div class="col-md-5">
+
+        <form class="row g-3 " action="{{ route('updatejob', $data['id']) }}" method="post" enctype="multipart/form-data">
+            @csrf
+            @method('put')
+            <div class="col-md-5">
                 <label for="Title" class="form-label">Title</label>
                 <input type="text" class="form-control" id="Title"name="title" required value="{{ $data['title'] }}">
                 <input style="display:none;" type="text" class="form-control" id="Title"name="id" required
@@ -26,14 +29,7 @@ echo $item['id']==$data->cate_id? 'selected':'' @endphp>
                 </select>
 
             </div>
-            {{-- <div class="col-md-6">
-                      <label for="Company" class="form-label">Company</label>
-                      <input type="text" class="form-control" id="location" name="location" required>
-                      @error('location')
-                      <span style="color:red;font-size:12px"> {{ $message }} </span> 
-                    
-                     @enderror
-                    </div> --}}
+
             <div class="col-md-3">
                 <label for="Skill" class="form-label">Type </label>
                 <select class="form-select" aria-label="Default select example" name="interval">
@@ -62,13 +58,7 @@ echo $item['id']==$data->cate_id ? 'selected' : '' @endphp>
 
             </div>
 
-            {{-- <div class="col-md-6">
-                      <label for="Company" class="form-label">location</label>
-                      <select name="company" id="">
-                        <option value=""></option>
-                      </select>
 
-                    </div> --}}
             <div class="col-4">
                 <label for="inputFrom" class="form-label">From </label>
                 <input type="date" class="form-control" id="inputFrom" placeholder="" name="from"required
@@ -88,7 +78,7 @@ echo $item['id']==$data->cate_id ? 'selected' : '' @endphp>
             @enderror
 
             <div class="col-12">
-                <label for="description" class="form-label">Requirements</label>
+                <label for="requirements" class="form-label">Requirements</label>
                 <textarea class="form-control" id="requirements" rows="3" name="requirements" required>
                             {{ $data['requirements'] }}
                         </textarea>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Enum\FeedbackMessage;
+use App\Http\Requests\CompanyRequest;
 use Illuminate\Support\Facades\DB;
 use App\Helpers\UploadFile;
 use App\Models\Company;
@@ -48,7 +50,7 @@ class CompanyController extends Controller
         // return response( $data);
         // $data = Company::All();
 
-        // return view('dashboard.list_companies')->with("data", $data);
+        // return view('dashboard.company.index')->with("data", $data);
     }
 
 
@@ -57,13 +59,7 @@ class CompanyController extends Controller
     {
 
         $data = Company::with('jobs')->orderBy('updated_at', 'desc')->get();
-
         return view('dashboard.list_companies')->with("data", $data);
-        // return response( $data);
-        // $data = Company::All();
-        // if(isset($data)){
-        //     echo "there is data "  ;
-        // }
     }
     public function updatePage(Request $request)
     {
@@ -72,102 +68,60 @@ class CompanyController extends Controller
 
         return view('dashboard.update_company', compact('data', 'locations'));
     }
-    public function update(Request $request)
-    {
-        $imageName = $request->prvImage;
 
+    public function update(CompanyRequest $request)
+    {
+        $request->validated();
+
+
+        $imageName = $request->prvImage;
         if ($request->logo) {
             $imageName = time() . '.' . $request->logo->extension();
             $request->logo->move(public_path('images'), $imageName);
         }
-        // $request->logo = $request->logo ??  $request->prvImage;
-        // echo  $request->logo->extension();
-        Company::where('id',  $request->id)
-            ->update(
-                [
-                    'name' => $request->name,
-                    'logo' => $imageName,
-                    'link' => $request->link,
-                    'location_id' => $request->location_id,
-                    'email' => $request->email,
+        $company = Company::find($request->id);
+        $company->name = $request->name;
+        $company->logo = $imageName;
+        $company->location_id = $request->location_id;
+        $company->link = $request->link;
+        $company->email = $request->email;
+        if ($company->save()) {
 
-                ]
-            );
-
-
-        return redirect('list_companies');
+            to_route('company.index')->with(['success' => FeedbackMessage::UPDATE_SUCCESS]);
+        }
+        return to_route('company.index')->with(['error' => FeedbackMessage::UPDATE_FAILED]);
     }
 
 
     public function activate(Request $request)
     {
-        echo $request->id;
-        echo $request->active;
-        $active = 1;
-        if ($request->active == 1) {
-            $active = 0;
-        }
+        $company = Company::find($request->id);
+        $company->is_active = $request->active == 1 ? 0 : 1;
+        if ($company->save()) {
 
-        Company::where('id',  $request->id)
-            ->update(
-                [
-                    'is_active' => $active,
-                ]
-            );
-        return redirect('list_companies');
+            to_route('company.index')->with(['success' => FeedbackMessage::UPDATE_SUCCESS]);
+        }
+        return to_route('company.index')->with(['error' => FeedbackMessage::UPDATE_FAILED]);
     }
 
 
 
-
-
-
-
-
-
-
-
-
-
-    public function add(Request $request)
+    public function add(CompanyRequest $request)
     {
 
-        Validator::validate($request->all(), [
-
-
-            // 'link'=>['regex:/^(https?:\/\/)?(www\.)?facebook.com\/[a-zA-Z0-9(\.\?)?]/'],
-            //['regex:/(^([a-zA-z]+)(\d+)?$)/']
-            // 'user_pass'=>['required','min:5']
-            'logo' => ['required'],
-            'name' => ['required', 'min:3', 'max:50'],
-
-
-        ], [
-            'name.required' => 'name is required',
-            'name.min' => 'name must be at least 3 letters',
-            'name.max' => 'name must be at most 50 letters',
-            //    ' link.regex'=>'link must vaild facebook format '
-            'logo.required' => 'logo is required',
-        ]);
+        $request->validated();
         $company = new Company();
         $company->name = $request->name;
         $imageName = time() . '.' . $request->logo->extension();
         $request->logo->move(public_path('images'), $imageName);
         $company->logo = $imageName;
-
-        //  $company->logo=$request->logo;
         $company->location_id = $request->location_id;
         $company->link = $request->link;
         $company->email = $request->email;
 
-
         if ($company->save()) {
-            return  redirect('list_companies');
-            //  return route('companies')->with([ 'success'=>'created successfully' ]);
-        } else {
-            return back();
+            return to_route('company.index')->with(['success' => FeedbackMessage::ADD_SUCCESS]);
+            return to_route('company.index')->with(['error' => FeedbackMessage::ADD_FAILED]);
         }
-        // echo  UploadFile::uploadFile($request->logo);
-
     }
 }

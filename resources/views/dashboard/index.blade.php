@@ -1,6 +1,9 @@
 @extends('layout.master')
 <style>
-    .dashboardContainer {}
+    .staticsContainer:first-of-type {
+        padding-top: 25px;
+
+    }
 
     .staticsContainer {
         display: flex;
@@ -10,8 +13,7 @@
         font-weight: bolder;
         /* color: #a09ed8; */
         color: #37594c;
-        padding-top: 60px;
-        padding-bottom: 60px;
+        padding-bottom: 20px;
     }
 
     .staticItem {
@@ -22,7 +24,7 @@
         /* background-color: #04aa6d; */
         /* background-color: #28b661; */
         /* #04aa6dc2 */
-        width: 170px;
+        width: 190px;
         height: 80px;
         border-radius: 10px;
         /* color: white; */
@@ -47,6 +49,16 @@
         /* border: 2px solid #04aa6dc2; */
 
         /* color:white; */
+    }
+
+    .dashCardHeading {
+        text-align: center;
+        margin-top: 5px;
+    }
+
+    .staticsContainer .info {
+        padding-top: 30px;
+        padding-bottom: 20px;
     }
 
     .staticsContainer img {
@@ -81,25 +93,9 @@ justify-self: center; */
 </style>
 @section('content')
     <div class="dashboardContainer">
+
         <div class="staticsContainer">
-            <div class="staticItem">
-                <div class="heading">
 
-                    <div class="imgCont">
-                        {{-- <img width="" src="./images/sidebarIcons/parents.svg" alt=""> --}}
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-
-                </div>
-                <div class="info">
-                    <span class="dashCardCount">
-                        Jobs
-
-                    </span>
-                    <p class="dashCardHeading">{{ $jobs->count() }}</p>
-
-                </div>
-            </div>
             <div class="staticItem">
                 <div class="heading">
 
@@ -111,6 +107,26 @@ justify-self: center; */
                 <div class="info">
                     <span class="dashCardCount">Companies</span>
                     <p class="dashCardHeading">{{ $companies->count() }}</p>
+
+                </div>
+            </div>
+
+
+            <div class="staticItem">
+                <div class="heading">
+
+                    <div class="imgCont">
+                        {{-- <img width="" src="./images/sidebarIcons/parents.svg" alt=""> --}}
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+
+                </div>
+                <div class="info">
+                    <span class="dashCardCount">
+                        Advertisments
+
+                    </span>
+                    <p class="dashCardHeading">{{ $adds->count() }}</p>
 
                 </div>
             </div>
@@ -126,50 +142,107 @@ justify-self: center; */
                     <span class="dashCardCount">Subscribers</span>
                     <p class="dashCardHeading">0</p>
                 </div>
-                {{-- <input name="cat[]" type="checkbox" id="cat" value="{{ $categoriesNames }}" /> --}}
+
+
             </div>
         </div>
-        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+        <div class="staticsContainer">
+            <div class="staticItem">
+                <div class="heading">
+
+                    <div class="imgCont">
+                        {{-- <img width="" src="./images/sidebarIcons/parents.svg" alt=""> --}}
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+
+                </div>
+                <div class="info">
+                    <span class="dashCardCount">
+                        All Jobs
+
+                    </span>
+                    <p class="dashCardHeading">0</p>
+
+                </div>
+            </div>
+            <div class="staticItem">
+                <div class="heading">
+
+                    <div class="imgCont">
+                        {{-- <img width="" src="./images/sidebarIcons/parents.svg" alt=""> --}}
+                        <i class="fas fa-briefcase"></i>
+
+                    </div>
+                </div>
+                <div class="info">
+                    <span class="dashCardCount">Opened/Jobs</span>
+                    <p class="dashCardHeading">0</p>
+
+                </div>
+            </div>
+
+            <div class="staticItem">
+                <div class="heading">
+
+                    <div class="imgCont">
+                        {{-- <img width="" src="./images/sidebarIcons/parents.svg" alt=""> --}}
+                        <i class="fas fa-briefcase"></i>
+
+                    </div>
+                </div>
+                <div class="info">
+                    <span class="dashCardCount">Closed/Jobs </span>
+                    <p class="dashCardHeading">0</p>
+                </div>
+
+
+            </div>
+        </div>
+        <canvas id="myChart" style="width:400px!important;max-width:600px"></canvas>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-    {{-- {{ dd($categoriesNames) }} --}}
 
-    {{-- @for ($i = 0; $i < $categoriesNames->count(); $i++)
-    @endfor --}}
 
 
 
     <script>
-        var app = @json($categoriesNames);
-        alert(app);
-        let cat = document.getElementById('cat');
-        // let categoriesArr = [];
-        // let subscribersArr = [];
-        for (let i = 0; i < `$categoriesNames - > count()`; i++) {
-            categoriesArr.push($categoriesArr[i]);
-            console.log($categoriesArr[i]);
-        }
+        var categoriesJson = @json($categoriesNames);
+        var subscribersJson = @json($subscribersNums);
 
-        var xValues = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+        var arr = Object.keys(categoriesJson);
+        var catNamesArr = [];
+        var subscribersNumArr = [];
 
-        // [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
-        // console.log($categoriesNames);
+        /* get the json values and store it in array 
+         Object.keys(categoriesJson) return the keys only of json into array */
+
+        catNamesArr = Object.keys(categoriesJson).map((key) => {
+            return categoriesJson[key];
+        });
+        subscribersNumArr = Object.keys(subscribersJson).map((key) => {
+            return subscribersJson[key];
+        });
+
+
+
+        var xValues = catNamesArr;
         new Chart("myChart", {
             type: "line",
             data: {
                 labels: xValues,
                 datasets: [{
-                    // $subscribersCount,
-                    data: [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 7830, 2478],
-                    // [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 7830, 2478],
+                    label: 'subscribers',
+                    data: subscribersNumArr,
                     borderColor: "#28b661",
                     fill: false
                 }]
             },
             options: {
                 legend: {
-                    display: false
+                    display: true,
                 }
+
+
             }
         });
 
@@ -179,35 +252,83 @@ justify-self: center; */
 
         staticItem = document.querySelectorAll('.dashCardHeading');
 
-        let progressValue = 0;
-        let progressJobEndValue = '{{ $jobs->count() }}';
+
+        /**======================
+         *    companies
+         *========================**/
+
         let speed = 50;
-
-        let jobProgress = setInterval(() => {
-            progressValue++;
-            staticItem[0].textContent = `${progressValue}`;
-            if (progressValue == progressJobEndValue) {
-                clearInterval(jobProgress);
-            }
-        }, speed);
-
+        console.log('{{ $companies->count() }}');
+        let companyCounter = -1;
         let progressCompanyEndValue = '{{ $companies->count() }}';
-        let companyCounter = 0;
         let companyProgress = setInterval(() => {
             companyCounter++;
-            staticItem[1].textContent = `${companyCounter}`;
-            if (progressValue == progressCompanyEndValue) {
+            staticItem[0].textContent = `${companyCounter}`;
+            if (companyCounter == progressCompanyEndValue) {
                 clearInterval(companyProgress);
             }
         }, speed);
 
+
+        console.log('subscribers' + '{{ $subscribers->count() }}');
+        console.log('adds' + '{{ $adds->count() }}');
+        let progressValue = -1;
+        let progressEndValue = '{{ $adds->count() }}';
+        console.log('{{ $adds->count() }}');
+        let addProgress = setInterval(() => {
+            progressValue++;
+            staticItem[1].textContent = `${ progressValue}`;
+            if (progressValue == progressEndValue) {
+                clearInterval(addProgress);
+            }
+        }, speed);
+
+
+
+
+        console.log('subscribers' + '{{ $subscribers->count() }} ');
         let progressSubscriberEndValue = '{{ $subscribers->count() }}';
-        let subscriberCounter = 0;
+        let subscriberCounter = -1;
         let subscriberProgress = setInterval(() => {
             subscriberCounter++;
             staticItem[2].textContent = `${subscriberCounter}`;
-            if (progressValue == progressSubscriberEndValue) {
+            if (subscriberCounter == progressSubscriberEndValue) {
                 clearInterval(subscriberProgress);
+            }
+        }, speed);
+
+
+        let progressJobEndValue = '{{ $jobs->count() }}';
+        let jobCounter = -1;
+        let jobProgress = setInterval(() => {
+            jobCounter++;
+            staticItem[3].textContent = `${jobCounter}`;
+            if (jobCounter == progressJobEndValue) {
+                clearInterval(jobProgress);
+            }
+        }, speed);
+
+
+
+        let progressOpenedJobsEndValue = '{{ $openedJobs->count() }}';
+        let openedJobsCounter = -1;
+        let openedJobsProgress = setInterval(() => {
+            openedJobsCounter++;
+            staticItem[4].textContent = `${openedJobsCounter}`;
+            if (openedJobsCounter == progressOpenedJobsEndValue) {
+                clearInterval(openedJobsProgress);
+            }
+        }, speed);
+
+
+
+        let progressClosedJobsEndValue = '{{ $closedJobs->count() }}';
+        let closedJobsCounter = -1;
+        let closedJobsProgress = setInterval(() => {
+            closedJobsCounter++;
+            staticItem[5].textContent = `${closedJobsCounter}`;
+            if (closedJobsCounter == progressClosedJobsEndValue) {
+                clearInterval(closedJobsProgress);
             }
         }, speed);
     </script>

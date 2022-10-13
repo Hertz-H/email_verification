@@ -4,6 +4,7 @@
     <div class="form-container  ">
         <h3> Add Location</h3>
         <form class="row g-3 " action="{{ route('save_location') }}" method="post" enctype="multipart/form-data">
+
             @csrf
             <div class="col-md-6">
                 <label for="Title" class="form-label">Name</label>

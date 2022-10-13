@@ -1,0 +1,48 @@
+
+    :root{
+    --main-color:#28b661;
+    --secondary-color:#f3f5f0;
+}
+.Sign{
+    /* background-color: wheat; */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, .15);
+    padding:20px;
+    width:400px;
+        margin: auto;
+        margin-top:30px;
+        border-radius: 5px;
+
+       
+}
+
+    .Sign h3{
+        margin: 5px 0 15px 0;
+        padding-bottom:20px;
+        color:var(--main-color);
+        /* padding-top:px; */
+        border-bottom: 1px var(--main-color) solid;
+       
+    }
+    .Sign .btn{
+        background-color:var(--main-color);
+        color:white;
+        display: block;
+        margin-top:20px;
+        margin-bottom:15px;
+        width: 100%;
+        
+    }
+    
+    .form-control:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #28b661 ;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgb(76 175 80 / 27%) ;
+     
+    }
+    @media(max-width:768px){
+        .Sign{
+                width:80%;
+        }
+    }

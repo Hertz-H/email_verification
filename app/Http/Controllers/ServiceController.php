@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Service;
+use App\Http\Requests\ServiceRequest;
+use App\Http\Controllers\Enum\FeedbackMessage;
 use Illuminate\Support\Facades\Validator;
 
 class ServiceController extends Controller
@@ -18,73 +20,49 @@ class ServiceController extends Controller
 
         return view('dashboard.add_service');
     }
-    public function add(Request $request)
+    public function add(ServiceRequest $request)
     {
-
-        Validator::validate($request->all(), [
-            'title' => ['required', 'min:3', 'max:50'],
-
-            'description' => ['required'],
-
-        ], [
-            'title.required' => 'tilte is required',
-            'title.min' => 'title must be at least 3 letters',
-            'title.max' => 'title must be at most 50 letters',
-            'description.required' => 'description is required',
-        ]);
+        $request->validated();
         $service = new Service();
         $service->title = $request->title;
         $service->description = $request->description;
 
         if ($service->save()) {
-            return redirect('list_services')->with(['success' => 'created successfully']);
-        } else {
-            return redirect('list_services')->with(['error' => 'creation failed']);
+            to_route('service.index')->with(['success' => FeedbackMessage::ADD_SUCCESS]);
         }
+        return to_route('service.index')->with(['error' => FeedbackMessage::ADD_FAILED]);
     }
 
 
-    public function updatePage(Request $request)
+    public function updatePage(ServiceRequest $request)
     {
         $data = Service::find($request->id);
-        if (isset($data)) {
-            echo "there is data ";
-        }
-
         return view('dashboard.update_service')->with("data", $data);
     }
-    public function update(Request $request)
+    public function update(ServiceRequest $request)
     {
-        echo $request->id;
-        Service::where('id',  $request->id)
-            ->update(
-                [
-                    'title' => $request->title,
-                    'description' => $request->description
-                ]
-            );
+        $request->validated();
+        $service = Service::find($request->id);
+        $service->title = $request->title;
+        $service->description = $request->description;
 
-
-        return redirect('list_services');
+        if ($service->save()) {
+            to_route('service.index')->with(['success' => FeedbackMessage::UPDATE_SUCCESS]);
+        }
+        return to_route('service.index')->with(['error' => FeedbackMessage::UPDATE_FAILED]);
     }
 
 
     public function activate(Request $request)
     {
-        echo $request->id;
-        echo $request->active;
-        $active = 1;
-        if ($request->active == 1) {
-            $active = 0;
-        }
 
-        Service::where('id',  $request->id)
-            ->update(
-                [
-                    'is_active' => $active,
-                ]
-            );
-        return redirect('list_services');
+        $service = Service::find($request->id);
+        $service->is_active = $request->active == 1 ? 0 : 1;
+        if ($service->save()) {
+
+            to_route('service.index')->with(['success' => FeedbackMessage::UPDATE_SUCCESS]);
+        }
+        return to_route('service.index')->with(['error' => FeedbackMessage::UPDATE_FAILED]);
     }
 
 

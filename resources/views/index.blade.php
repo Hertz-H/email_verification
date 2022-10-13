@@ -19,136 +19,7 @@
 
 
 </head>
-<style>
-    .introContianer {
-        padding-top: 90px;
-        padding-bottom: 90px;
-        /* background-color: rgb(241, 246, 246); */
-        background-color: var(--secondary-color);
-    }
 
-    .intro {
-        display: flex;
-        /* text-align: center; */
-    }
-
-    .introContianer .introImgContainer {
-        width: 100%;
-        /* overflow: hidden; */
-        position: relative;
-        z-index: 1;
-
-    }
-
-    .introContianer .introImgContainer img {
-        max-height: 100%;
-        max-width: 100%;
-        position: relative;
-        z-index: 1;
-        border-radius: 10px;
-
-    }
-
-    .introContianer .introContent {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
-        width: 100%;
-
-    }
-
-    .introContent p {
-        max-width: 400px;
-        letter-spacing: 1px;
-        font-weight: bolder;
-        line-height: 1.8;
-
-
-    }
-
-    .introContent h4 {
-        font-size: 30px;
-        font-weight: bolder;
-    }
-
-    .jlcVQc {
-        width: 155px;
-        color: #d8ebe9;
-        position: absolute;
-        left: 30px;
-        top: -90px;
-        z-index: 0;
-    }
-
-    .cYoJqn {
-        transform: rotate(-30deg);
-        width: 100px;
-        position: absolute;
-        right: -20px;
-        top: -55px;
-        z-index: 2;
-        /* color: rgb(88, 209, 189); */
-        color: #28b661c4;
-
-
-
-    }
-
-    .kTBlWA {
-        width: 150px;
-        right: -23px;
-        bottom: -55px;
-        color: rgb(216, 235, 233);
-        position: absolute;
-        z-index: 0;
-        transform: rotate(-14.83deg);
-    }
-
-    .hNeGZA {
-        width: 94px;
-        left: -9%;
-        bottom: -4%;
-        color: #28b661c4;
-        position: absolute;
-        transform: rotate(-26.94deg);
-        z-index: 1;
-    }
-
-    .subscriber {
-        position: relative;
-    }
-
-    .subscribe_container .feedbackMessage {
-        position: absolute;
-        display: flex;
-        align-items: center;
-        width: 250px;
-        height: 40px;
-        border-color: #28b661;
-
-        /* border-style: solid; */
-        border-width: 1px;
-        bottom: 100px;
-        right: 250px;
-        text-align: left;
-        color: #28b661;
-        opacity: 0;
-        transition: opacity 1s;
-        border-radius: 3px;
-        padding-left: 10px;
-        padding-right: 10px;
-        box-shadow: 0px 8px 16px rgba(0, 0, 0, .15);
-        /* padding-left: 20px; */
-
-    }
-
-    .feedbackMessage i {
-        /* background-color: green; */
-
-        margin-right: 10px;
-    }
-</style>
 
 <body>
 
@@ -215,7 +86,8 @@
                                 </i>
                                 <div class="card__title">
                                     <span class="card__title_first"> {{ $item['title'] }}</span>
-                                    <div class="card__title_second"> <i class="fas fa-map-marker-alt"></i>
+                                    <div class="card__title_second"> <i class="fas fa-map-marker-alt">
+                                        </i> {{ $item->company->location['name'] }}
                                     </div>
                                     {{-- <div class="company "> {{ $item->company['name'] }}</div> --}}
 
@@ -248,7 +120,8 @@
 
                 <div class="lower_adv_cont d-flex flex-column flex-md-row  ">
                     @foreach ($data['ad'] as $item)
-                        <div class="ad_one"> <img src="images/{{ $item['image'] }}" alt=""></div>
+                        <a href='{{ $item['link'] }}'>
+                            <div class="ad_one"> <img src="images/{{ $item['image'] }}" alt=""></div><a>
                     @endforeach
 
 
@@ -361,7 +234,7 @@
                 })
                 .catch(function(error) {
                     if (error.response) {
-                        // console.log(error.response.data.errors);
+                        console.log(error);
                         var errors = error.response.data.errors;
                         Object.keys(errors).forEach((key) => {
                             fetChData.style.color = 'red';

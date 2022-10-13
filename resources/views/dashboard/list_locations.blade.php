@@ -1,16 +1,11 @@
 @extends('layout.master')
 
 @section('content')
-    @if (session()->has('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session()->get('success') }}
-
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
     <div class="form-container">
+        <x-feedback-message></x-feedback-message>
         <div class="exper_info ">
-            <h3 class="d-inline"> Locations </h3> <a class="add add_exp " href="/add_location"> add</a>
+            <h3 class="d-inline"> Locations </h3> <a class="add add_exp " href="/add_location"> <i class="far fa-plus"></i> New
+            </a>
 
         </div>
         <table class="table table-image">
@@ -36,19 +31,30 @@
                                     style="background-color: #e8fadf ;
                                            color: #71dd37;padding: 5px 8px; border-radius: 4px;
                                            padding-bottom: 9px;"
-                                    class=" ">مفعل</span>
+                                    class=" ">active</span>
                             @else
                                 <span class=" "
                                     style="color: #ea2b33;
                                        background-color: #ffeced;padding: 5px 8px; border-radius: 4px;
-                                       padding-bottom: 9px;">موقف</span>
+                                       padding-bottom: 9px;">inactive</span>
                             @endif
                         </td>
                         <td>
-                            <a href="update_location/{{ $item['id'] }}" class=" edit btn "><i
-                                    class="fas fa-edit"></i></a><a
-                                href="activate_location/{{ $item['id'] }}/{{ $item['is_active'] }}"
-                                class="btn  text-danger"><i class="fas fa-trash-alt"></i></a>
+                            @if ($item['is_active'] == 1)
+                                <a href="update_location/{{ $item['id'] }}" class=" edit btn "><i
+                                        class="fas fa-edit"></i></a><a
+                                    href="activate_location/{{ $item['id'] }}/{{ $item['is_active'] }}" class="btn  "
+                                    style="color: #71dd37">
+                                    <i class="fas fa-eye"></i>
+                                    {{-- <i class="fas fa-trash-alt"> --}}
+                                    </i></a>
+                            @else
+                                <a href="update_location/{{ $item['id'] }}" class=" edit btn "><i
+                                        class="fas fa-edit"></i></a><a
+                                    href="activate_location/{{ $item['id'] }}/{{ $item['is_active'] }}"
+                                    class="btn text-danger "> <i class="fas fa-eye-slash"></i></a>
+                            @endif
+
                         </td>
                     </tr>
                 @endforeach

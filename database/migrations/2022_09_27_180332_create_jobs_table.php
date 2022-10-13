@@ -25,7 +25,7 @@ return new class extends Migration
             $table->foreign('cate_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreignId('company_id');
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
-            $table->boolean('is_active')->default(0);
+            $table->boolean('is_active')->default(1);
             $table->timestamps();
         });
     }

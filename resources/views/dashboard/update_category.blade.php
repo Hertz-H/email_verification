@@ -3,8 +3,9 @@
 @section('content')
     <div class="form-container  ">
         <h3> update category</h3>
-        <form class="row g-3 " action="{{ route('edit_category') }}" method="post" enctype="multipart/form-data">
+        <form class="row g-3 " action="{{ route('edit_category', $data['id']) }}" method="post" enctype="multipart/form-data">
             @csrf
+            @method('put')
             <div class="col-md-6">
                 <label for="Title" class="form-label">Title</label>
                 <input type="text" class="form-control" id="Title"name="title" required value="{{ $data['title'] }}">

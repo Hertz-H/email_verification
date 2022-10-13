@@ -41,18 +41,34 @@ class SubscriberController extends Controller
             ['email' => $request->email]
         );
 
-
-        $subscriberCategory = SubscriberCategory::firstOrCreate(
-            [
-                'subscriber_id' => $subscriber->id,
-                'cate_id' => $request->cate_id
-            ]
-        );
-        if (!is_null($subscriberCategory)) {
-            return response(['message' => 'subscribed successfully.']);
+        if (SubscriberCategory::where('subscriber_id', $subscriber->id)->where('cate_id', $request->cate_id)->exists()) {
+            return response(['message' => 'you have aleardy subscribed in this category']);
+            // 
+            // return response()->json(
+            //     [
+            //         'success' => false,
+            //         'error' => ['you have aleardey subscribed in this category']
+            //     ],
+            //     400
+            // );
+            // return response()->json([
+            //     'success' => false,
+            //     'error' => []
+            // ], 400);
         } else {
-            return response(['message' => 'failed.']);
+            $subscriberCategory = SubscriberCategory::firstOrCreate(
+                [
+                    'subscriber_id' => $subscriber->id,
+                    'cate_id' => $request->cate_id
+                ]
+            );
+            if (!is_null($subscriberCategory)) {
+                return response(['message' => 'subscribed successfully.']);
+            } else {
+                return response(['message' => 'failed.']);
+            }
         }
+
         // $subscriberCategory->subscriber_id = $subscriber->id;
         // $subscriberCategory->cate_id = $request->cate_id;
         // if ($subscriberCategory->save()) {

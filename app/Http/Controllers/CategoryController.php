@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Http\Requests\CategoryRequest;
+use App\Http\Controllers\Enum\FeedbackMessage;
+
 use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
@@ -18,27 +21,16 @@ class CategoryController extends Controller
         return view('dashboard.add_category');
     }
 
-    public function add(Request $request)
+    public function add(CategoryRequest $request)
     {
-
-        Validator::validate($request->all(), [
-            'title' => ['required', 'min:3', 'max:50'],
-
-
-        ], [
-            'title.required' => 'tilte is required',
-            'title.min' => 'title must be at least 3 letters',
-            'title.max' => 'title must be at most 50 letters',
-
-        ]);
+        $request->validated();
         $category = new Category();
         $category->title = $request->title;
 
         if ($category->save()) {
-            return redirect('list_categories')->with(['success' => 'created successfully']);
-        } else {
-            return redirect('list_categories')->with(['error' => 'creation failed']);
+            to_route('category.index')->with(['success' => FeedbackMessage::UPDATE_SUCCESS]);
         }
+        return to_route('category.index')->with(['error' => FeedbackMessage::UPDATE_FAILED]);
     }
 
 
@@ -48,43 +40,28 @@ class CategoryController extends Controller
         return view('dashboard.update_category')->with("data", $data);
     }
 
-    public function update(Request $request)
+    public function update(CategoryRequest $request)
     {
-
-        Category::where('id',  $request->id)
-            ->update(
-                [
-                    'title' => $request->title,
-
-                ]
-            );
-
-
-        return redirect('list_categories');
+        $request->validated();
+        $category = Category::find($request->id);
+        $category->title = $request->title;
+        if ($category->save()) {
+            to_route('category.index')->with(['success' => FeedbackMessage::UPDATE_SUCCESS]);
+        }
+        return to_route('category.index')->with(['error' => FeedbackMessage::UPDATE_FAILED]);
     }
 
 
     public function activate(Request $request)
     {
+        $category = Category::find($request->id);
+        $category->is_active = $request->active == 1 ? 0 : 1;
+        if ($category->save()) {
 
-        $active = 1;
-        if ($request->active == 1) {
-            $active = 0;
+            to_route('category.index')->with(['success' => FeedbackMessage::UPDATE_SUCCESS]);
         }
-
-        Category::where('id',  $request->id)
-            ->update(
-                [
-                    'is_active' => $active,
-                ]
-            );
-        return redirect('list_categories');
+        return to_route('category.index')->with(['error' => FeedbackMessage::UPDATE_FAILED]);
     }
-
-
-
-
-
 
     public function list()
     {

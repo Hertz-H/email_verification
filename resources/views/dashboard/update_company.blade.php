@@ -4,8 +4,9 @@
     <div class="form-container  ">
         <h3> company</h3>
 
-        <form class="row g-3  " action="{{ route('updateCompany') }}" method="post" enctype="multipart/form-data">
+        <form class="row g-3  " action="{{ route('updateCompany', $data['id']) }}" method="post" enctype="multipart/form-data">
             @csrf
+            @method('put')
             <div class="col-md-6">
                 <label for="Title" class="form-label">name</label>
                 <input type="text" class="form-control" id="Title"name="name" required value="{{ $data['name'] }}">

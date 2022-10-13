@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Add;
+use App\Http\Requests\AdRequest;
+use App\Http\Controllers\Enum\FeedbackMessage;
 use Illuminate\Support\Facades\Validator;
 
 class AddController extends Controller
@@ -29,53 +31,45 @@ class AddController extends Controller
 
         return view('dashboard.update_ad')->with("data", $data);
     }
-    public function update(Request $request)
+    public function update(AdRequest $request)
     {
-        $imageName = $request->prvImage;
 
+        $imageName = $request->prvImage;
         if ($request->image) {
             $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('images'), $imageName);
         }
 
 
-        Add::where('id',  $request->id)
-            ->update(
-                [
-                    'company' => $request->name,
-                    'image' => $imageName,
-                    'link' => $request->link,
-                    'start_date' => $request->start_date,
-                    'end_date' => $request->end_date
-
-                ]
-            );
+        $ad = Add::find($request->id);
+        $ad->company = $request->name;
+        $ad->image = $imageName;
+        $ad->link = $request->link;
+        $ad->start_date = $request->start_date;
+        $ad->end_date = $request->end_date;
 
 
-        return redirect('list_ads');
+        if ($ad->save()) {
+            to_route('ad.index')->with(['success' => FeedbackMessage::UPDATE_SUCCESS]);
+        }
+        return to_route('ad.index')->with(['error' => FeedbackMessage::UPDATE_FAILED]);
     }
 
 
     public function activate(Request $request)
     {
-        echo $request->id;
-        echo $request->active;
-        $active = 1;
-        if ($request->active == 1) {
-            $active = 0;
-        }
+        $ad = Add::find($request->id);
+        $ad->is_active = $request->active == 1 ? 0 : 1;
+        if ($ad->save()) {
 
-        Add::where('id',  $request->id)
-            ->update(
-                [
-                    'is_active' => $active,
-                ]
-            );
-        return redirect('list_ads');
+            to_route('ad.index')->with(['success' => FeedbackMessage::UPDATE_SUCCESS]);
+        }
+        return to_route('ad.index')->with(['error' => FeedbackMessage::UPDATE_FAILED]);
     }
 
-    public function add(Request $request)
+    public function add(AdRequest $request)
     {
+        $request->validated();
         Validator::validate($request->all(), [
             'name' => ['required', 'min:3', 'max:50'],
             'image' => ['required'],
@@ -107,11 +101,10 @@ class AddController extends Controller
         $ad->link = $request->link;
         $ad->start_date = $request->start_date;
         $ad->end_date = $request->end_date;
+
         if ($ad->save()) {
-            return redirect('list_ads')->with(['success' => 'created successfully']);
-        } else {
-            return back();
+            to_route('ad.index')->with(['success' => FeedbackMessage::ADD_SUCCESS]);
         }
-        return view('dashboard.add_ads');
+        return to_route('ad.index')->with(['error' => FeedbackMessage::ADD_FAILED]);
     }
 }

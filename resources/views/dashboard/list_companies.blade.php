@@ -2,8 +2,10 @@
 
 @section('content')
     <div class="form-container">
+        <x-feedback-message></x-feedback-message>
         <div class="exper_info ">
-            <h3 class="d-inline"> Companies </h3> <a class="add add_exp " href="/add_company"> add</a>
+            <h3 class="d-inline"> Companies </h3> <a class="add add_exp " href="/add_company"><i class="far fa-plus"></i>
+                New</a>
         </div>
         <table class="table table-image">
             <thead>
@@ -19,7 +21,7 @@
             <tbody>
                 @foreach ($data as $item)
                     <tr>
-                        {{-- <th scope="row">2</th> --}}
+
                         <td class="w-25">
                             <img src="images/{{ $item['logo'] }}" class="rounded" style="width:80px;height:80px">
                         </td>
@@ -27,9 +29,11 @@
                         <td>{{ $item['name'] }}</td>
                         <td>
                             @if ($item['is_active'] == 1)
-                                <span style="background-color: #e8fadf ;
+                                <span
+                                    style="background-color: #e8fadf ;
                                             color: #71dd37;padding: 5px 8px; border-radius: 4px;
-                                            padding-bottom: 9px;" class=" ">active</span>
+                                            padding-bottom: 9px;"
+                                    class=" ">active</span>
                             @else
                                 <span class=" "
                                     style="color: #ea2b33;
@@ -38,15 +42,22 @@
                             @endif
                         </td>
                         <td>
-
-                            <a href="update_company/{{ $item['id'] }}" class=" edit btn "><i class="fas fa-edit"></i></a>
                             @if ($item['is_active'] == 1)
-                                <a href="activate_company/{{ $item['id'] }}/{{ $item['is_active'] }}"
-                                    class="btn  text-danger"><i class="fas fa-trash-alt"></i></a>
+                                <a href="update_company/{{ $item['id'] }}" class=" edit btn "><i
+                                        class="fas fa-edit"></i></a><a
+                                    href="activate_company/{{ $item['id'] }}/{{ $item['is_active'] }}" class="btn  "
+                                    style="color: #71dd37">
+                                    <i class="fas fa-eye"></i>
+                                    {{-- <i class="fas fa-trash-alt"> --}}
+                                    </i></a>
                             @else
-                                <a href="activate_company/{{ $item['id'] }}/{{ $item['is_active'] }}" class="btn  "
-                                    style="color: #71dd37">activate</a>
+                                <a href="update_company/{{ $item['id'] }}" class=" edit btn "><i
+                                        class="fas fa-edit"></i></a><a
+                                    href="activate_company/{{ $item['id'] }}/{{ $item['is_active'] }}"
+                                    class="btn text-danger "> <i class="fas fa-eye-slash"></i></a>
                             @endif
+
+
                         </td>
                     </tr>
                 @endforeach

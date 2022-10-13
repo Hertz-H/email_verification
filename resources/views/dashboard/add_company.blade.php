@@ -5,6 +5,7 @@
         <h3> company</h3>
         <form class="row g-3  " action="{{ route('save_company') }}" method="post" enctype="multipart/form-data">
             @csrf
+
             <div class="col-md-6">
                 <label for="Title" class="form-label">name</label>
                 <input type="text" class="form-control" id="Title"name="name" required value="{{ old('name') }}">

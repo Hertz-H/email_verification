@@ -1,5 +1,4 @@
-
-    *{
+  *{
         padding:0;
         margin:0;
         box-sizing: border-box;
@@ -35,7 +34,7 @@
         border: 1.3px #bfc2c969  solid;
         text-align: center;
         font-size: .8rem;
-        line-height: 33px;
+        line-height: 33px ;
         border-radius: 50%;
     }
     .card__job_time{
@@ -119,6 +118,8 @@
 }
  .job_section{
      padding:50px 0 ;
+
+     
  } 
  .form-control:focus, .form-select:focus{
     border-color: #28b661 ;
